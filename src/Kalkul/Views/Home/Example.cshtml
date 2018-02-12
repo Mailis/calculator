@@ -1,0 +1,144 @@
+﻿@{
+    ViewData["Title"] = "Examples";
+}
+<h2>@ViewData["Message"]</h2>
+<div class="column">
+    <h3>Subtractor implements </h3>
+    <h4><a href="./Abstract">IOperator</a> abstract class</h4>
+    <pre>
+            using System;
+            using System.Collections.Generic;
+            namespace CalcOperator.Subtracting
+            {
+                public class Subtractor : IOperator
+                {
+                    private string _value = "-";
+                    private int _precedence = 2;
+                    private int _numberOfArguments = 2;
+                    private bool _isFunction = false;
+                    private bool _isParenthesis = false;
+                    private Associativity _associativity = Associativity.left;
+                    private int _orderAtGui = 2;
+                    public Subtractor()
+                    {
+                        TypeObserver.getInstance().registerOperator(this);
+                    }
+                    public override double operate(Stack<double> stack)
+                    {
+                        if (stack.Count == this.numberOfArguments)
+                        {
+                            double d1 = stack.Pop();
+                            double d2 = stack.Pop();
+                            return d1 - d2;
+                        }
+                        else
+                        {
+                            throw new ArgumentException();
+                        }
+                    }
+                    public override string value
+                    {
+                        get
+                        {
+                            return this._value;
+                        }
+                    }
+                    public override int precedence
+                    {
+                        get
+                        {
+                            return this._precedence;
+                        }
+                    }
+                    public override Associativity associativity
+                    {
+                        get
+                        {
+                            return this._associativity;
+                        }
+                    }
+                    public override int numberOfArguments
+                    {
+                        get
+                        {
+                            return this._numberOfArguments;
+                        }
+                    }
+                    public override bool isFunction
+                    {
+                        get
+                        {
+                            return this._isFunction;
+                        }
+                    }
+                    public override bool isParenthesis
+                    {
+                        get
+                        {
+                            return this._isParenthesis;
+                        }
+                    }
+                    public override int orderAtGui
+                    {
+                        get
+                        {
+                            return this._orderAtGui;
+                        }
+                    }
+                }
+            }
+    </pre>
+</div>
+
+<div class="column">
+    <h3>LeftParenthesis implements</h3>
+    <h4><a href="./Abstract">IGeneralOperator</a> abstract class</h4>
+    <pre>
+            using System;
+            using System.Collections.Generic;
+            namespace CalcOperator.Parenthesis.Left
+            {
+                public class LeftParenthesis : IGeneralOperator
+                {
+                    private string _value = "(";
+                    private bool _isFunction = false;
+                    private bool _isParenthesis = true;
+                    private int _orderAtGui = -101;
+                    public LeftParenthesis()
+                    {
+                        TypeObserver.getInstance().registerOperator(this);
+                    }
+        
+                    public override string value
+                    {
+                        get
+                        {
+                            return this._value;
+                        }
+                    }
+                    public override bool isFunction
+                    {
+                        get
+                        {
+                            return this._isFunction;
+                        }
+                    }
+                    public override bool isParenthesis
+                    {
+                        get
+                        {
+                            return this._isParenthesis;
+                        }
+                    }
+                    public override int orderAtGui
+                    {
+                        get
+                        {
+                            return this._orderAtGui;
+                        }
+                    }
+                }
+            }
+    </pre>
+</div>
+<div class="clear"></div>

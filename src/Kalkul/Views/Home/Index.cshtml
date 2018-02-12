@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+    <div class="column">
+        <div class="form_group">
+            <input type="text" class="form-control" id="calc_input" placeholder="sisend">
+            <div class="column">
+                <div id="number-buttons">
+                    <input class="btnclick btnNum" type="button" value="1" />
+                    <input class="btnclick btnNum" type="button" value="2" />
+                    <input class="btnclick btnNum" type="button" value="3" />
+                    <input class="btnclick btnNum" type="button" value="4" />
+                    <input class="btnclick btnNum" type="button" value="5" />
+                    <input class="btnclick btnNum" type="button" value="6" />
+                    <input class="btnclick btnNum" type="button" value="7" />
+                    <input class="btnclick btnNum" type="button" value="8" />
+                    <input class="btnclick btnNum" type="button" value="9" />
+                    <input class="btnclick btnNum" type="button" value="0" />
+                    <input class="btnclick btnNum" type="button" value="," />
+                </div>
+            </div>
+            <div class="column">
+
+                <div id="mid-buttons">
+                    <input class="btnC btnMid" type="button" value="C" />
+                </div>
+            </div>
+
+            <div class="column">
+                <!--operator buttons are added here (op_buttons) dynamically-->
+                <div id="op_buttons" data-bind="foreach: uploads">
+                    <input class="btnclick btnOp" type="button" data-bind="value: opValue" />
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="column arvuta_rida">
+                <input class="column btnArvuta" type="button" id="calc_btn" value="=" />
+                <textarea id="calc_output" class="column control-label" multiline="true" readonly></textarea>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="column">
+
+            <!--dll UPLOAD-->
+            <div class="file_upload">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Upload "*.dll" files <a class="aLink" href="Home/Abstract"><strong>MUST</strong> implement IGeneralOperator</a></h2>
+                    </div>
+                    <div class="panel-body">
+                        <form id="dllFileUploadForm" name="form1" method="post" enctype="multipart/form-data">
+                            <div>
+                                <input class="rounded" type="file" name="file" multiple="multiple" />
+                            </div>
+                            <div>
+                                <input type="submit" value="Upload" id="uploadBtn" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>            
+            
+            
+            <!--dll RESTORE -->
+            <div class="file_upload restore">
+                <button  type="button" id="btnRestore" class="btn btn-info" data-bind="click: restoreFile">Restore deleted files</button>
+            </div>
+
+
+
+            <!--dll LIST-->
+            <div class="file_upload">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">List of uploaded "*.dll" files</h2>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-unstyled upfiles" data-bind="foreach: uploads">
+                            <li>
+                                <div class="opValue column rida" data-bind="text: opValue"></div>
+                                <span class="column rida" data-bind="text: typeName"></span>
+                                <a class="remove column rida" title="delete operator" data-bind="click: $parent.deleteFile"><span class="glyphicon glyphicon-remove"></span></a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--error column-->
+    <div class="column alert" data-bind="text: error"></div>
+</div>
+
+

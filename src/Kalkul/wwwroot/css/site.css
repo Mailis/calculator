@@ -1,0 +1,148 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin:auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+
+.jumbotron{
+    height:500px;
+}
+
+
+.form_group{
+    width: 750px;
+    height: 400px;
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color:darkslategrey;
+    color:white;
+}
+
+#number-buttons, #mid-buttons, #op_buttons{
+    margin-top:10px;
+    width: 190px;
+    font-size:1.5em;
+}
+
+
+#mid-buttons, #op_buttons, #calc_output{
+    background-color:darkslategrey;
+}
+#mid-buttons{
+    width: 60px;
+    margin-left:4px;
+    margin-right:6px;
+}
+#op_buttons{
+    width: 400px;
+}
+#calc_output{
+    border:none;
+    width: 650px;
+    max-width: 650px;
+    padding-top:15px;
+    font-size:1.5em;
+    color:black;
+}
+#calc_input{
+    width: 720px;
+}
+
+
+
+.btnNum,.btnMid,.btnOp,.btnArvuta{
+    width: 50px;
+    height: 50px;
+    border:solid thin white;
+    padding-bottom:2px;
+    margin: 4px 2px 4px 2px;
+    color:black;
+    font-family:Tahoma;
+}
+.btnMid{
+    background-color:dimgrey;
+    border:solid thin black;
+}
+.btnOp, .btnArvuta, .opValue{
+    background-color:cadetblue;
+    border:solid thin darkslategrey;
+}
+
+.opValue{
+    width: 20px;
+    height: 20px;
+    text-align:center;
+}
+
+.btnArvuta{
+    background-color:crimson;
+    font-size:1.5em;
+    margin-right: 8px;
+}
+.arvuta_rida{
+    margin-top: 4px;
+}
+
+.clear{
+    clear:both;
+}
+.column{
+    float:left;
+}
+
+.rida{
+    margin-right: 5px;
+}
+
+/*file upload*/
+.file_upload, form{
+    width: 250px;
+    font-size:small;
+    margin-left:5px;
+}
+
+.filename, .remove{
+    font-size: 1em;
+}
+
+.alert{
+    font-size: 0.7em;
+}
+
+li{
+    height:25px;
+}
+.upfiles, ul, .panel-body{
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.upfiles{
+    margin-top: 5px;
+}
+
+.aLink{
+    text-decoration:underline double;
+    font-size: smaller;
+}
+
+.restore{
+    margin-left: 50px;
+    margin-top: -15px;
+    margin-bottom: 5px;
+}

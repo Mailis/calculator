@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Abstract Classes";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<h5 class="column">Uploaded dll file of an <a href="./Example">operator</a> must implement </h5>
+<h2 class="column">IGeneralOperator</h2>
+<h4 class="column">or</h4>
+<h2 class="column">IOperator</h2>
+<h4 class="column">abstract class.</h4>
+
+<div class="column">
+<pre>
+        using System;
+        using System.Collections.Generic;
+        using System.Linq;
+        using System.Text;
+        using System.Threading.Tasks;
+        namespace CalcOperator
+        {
+            public abstract class IGeneralOperator
+            {
+                //operator's notation(e.g. for Multiplyer *)
+                public abstract string value { get; }
+                //is it operator or function
+                public abstract bool isFunction { get; }
+                //is it parenthesis
+                public abstract bool isParenthesis { get; }
+                //here, orderAtGui is used
+                //for displaying it in a cerian order on a calculator GUI
+                public abstract int orderAtGui { get; }
+            }
+        }
+</pre>
+</div>
+<div class="column">
+    <pre>
+        using System;
+        using System.Collections.Generic;
+        namespace CalcOperator
+        {
+            public abstract class IOperator :  IGeneralOperator
+            {
+                //precedence is important in 
+                // Shunting-yard algorithm
+                // for creating reverse polish notation
+                public abstract int precedence { get; }
+                public abstract int numberOfArguments { get; }
+                public abstract Associativity associativity { get; }
+                public enum Associativity
+                {
+                    non,
+                    left,
+                    right
+                };
+        
+                /**
+                  *parameter Stack<double> stack - stack has infix order of doubles
+                 **/
+                public abstract double operate(Stack<double> stack);
+        
+            }
+        }
+    </pre>
+</div>
+<div class="column">
+    <pre>
+        using System;
+        using System.Collections.Generic;
+        using System.Runtime.CompilerServices;
+        namespace CalcOperator
+        {
+            public class TypeObserver
+            {
+                Dictionary<string,IGeneralOperator> operatorDict = new Dictionary<string, IGeneralOperator>();
+                private static TypeObserver uniqueInstance;
+                private TypeObserver() { }
+                //only one thread can access at time
+                [MethodImpl(MethodImplOptions.Synchronized)]
+                public static TypeObserver getInstance()
+                {
+                    if (uniqueInstance == null)
+                    {
+                        uniqueInstance = new TypeObserver();
+                    }
+                    return uniqueInstance;
+                }
+                public Dictionary<string, IGeneralOperator> getAllOperators()
+                {
+                    return this.operatorDict;
+                }
+                public void registerOperator(IGeneralOperator ioperator)
+                {
+                    string opKey = ioperator.value;
+                    if (!operatorDict.ContainsKey(opKey)) {
+                        operatorDict.Add(opKey,ioperator);
+                    }
+                }
+                public void removeOperatorType(string opKey)
+                {
+                    operatorDict.Remove(opKey);
+                }
+        
+                public Dictionary<string, IGeneralOperator> getAllTypes()
+                {
+                    return this.operatorDict;
+                }
+            }
+        }
+    </pre>
+</div>
+<div class="clear"></div>
