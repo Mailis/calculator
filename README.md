@@ -12,8 +12,8 @@ Be sure, that this package is included in the app's references.
         This app was made using .NET Core (MVVC) tools.
     <br /><br />
         User can upload and remove operators (*.dll files) dynamically. 
-        The <a href="./Example">operators</a> must extend either abstract class <a href="./Abstract">IGeneralOperator</a> or <a href="./Abstract">
-    IOperator</a>.
+        The <b>operators</b> must extend either abstract class <b>IGeneralOperator</b> or <b>
+    IOperator</b>.
     <br /><br />
     For converting infix notation to postfix (Reverse Polish Notation),
     <strong>Shunting-yard algorithm</strong> was used.
